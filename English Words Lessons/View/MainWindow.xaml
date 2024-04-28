@@ -1,0 +1,29 @@
+﻿<Window x:Class="English_Words_Lessons.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10">
+            <Button Content="Добавить" Command="{Binding AddCommand}" Margin="5"/>
+            <Button Content="Изменить" Command="{Binding EditCommand}" CommandParameter="{Binding ElementName=dtg1,Path=SelectedItem}" Margin="5"/>
+            <Button Content="Удалить" Command="{Binding DeleteCommand}" CommandParameter="{Binding ElementName=dtg1,Path=SelectedItem}"  Margin="5"/>
+            <Button Content="Проверка слов" Command="{Binding CheckWordsCommand}"   Margin="5"/>
+        </StackPanel>
+
+        <DataGrid x:Name="dtg1" Grid.Row="1" Margin="10" ItemsSource="{Binding Words}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="English" Binding="{Binding EnglishWord }" Width="*"/>
+                <DataGridTextColumn Header="Транскрипция" Binding="{Binding Transcription }" Width="*"/>
+                <DataGridTextColumn Header="Russian" Binding="{Binding RussianWord}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
